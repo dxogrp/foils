@@ -71,6 +71,11 @@ pdflatex talk.tex
 
 ## Class Options
 
+`169`
+: Use 16:9 slides with a page width of 16 inches and a height of 9 inches:
+  `\documentclass[169]{foils}`. Margins, typography, and other settings stay
+  the same. Without this option, pages remain 11 by 8.5 inches.
+
 `lecture`
 : Reset page numbering at each section and print foil numbers as
   `section--page`, for example `2--3`. When `hyperref` is loaded, Foils also

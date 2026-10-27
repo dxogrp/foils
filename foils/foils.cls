@@ -3,7 +3,9 @@
 
 \newif\iffoils@lecture
 \newif\iffoils@appendix
+\newif\iffoils@widescreen
 \DeclareOption{lecture}{\foils@lecturetrue}
+\DeclareOption{169}{\foils@widescreentrue}
 \ProcessOptions\relax
 
 \RequirePackage{fix-cm}
@@ -12,9 +14,14 @@
 \RequirePackage{enumitem}
 \RequirePackage{graphicx}
 
-% Page layout: FoilTeX landscape letter defaults used by this template.
-\setlength{\paperwidth}{11in}
-\setlength{\paperheight}{8.5in}
+% Page layout: landscape letter by default, or 16:9 with the 169 option.
+\iffoils@widescreen
+  \setlength{\paperwidth}{16in}
+  \setlength{\paperheight}{9in}
+\else
+  \setlength{\paperwidth}{11in}
+  \setlength{\paperheight}{8.5in}
+\fi
 \setlength{\oddsidemargin}{0pt}
 \setlength{\evensidemargin}{0pt}
 \setlength{\topmargin}{-1.5cm}

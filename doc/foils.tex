@@ -19,7 +19,7 @@ This document describes the public interface provided by the class file \file{fo
 
 \section{Overview}
 \pkg{foils} is intended for simple lecture or seminar slide decks.
-The class sets up letter-sized landscape pages, a large sans-serif default text face, ragged-right paragraphs, slide-friendly list spacing, and a footer that can show the current section and page number.
+The class sets up letter-sized landscape pages by default, a large sans-serif default text face, ragged-right paragraphs, slide-friendly list spacing, and a footer that can show the current section and page number.
 
 A typical deck uses the following structure:
 \begin{itemize}
@@ -90,8 +90,9 @@ pdflatex talk.tex
 \end{verbatim}
 
 \section{Class options}
-\pkg{foils} currently defines one class option:
+\pkg{foils} defines the following class options:
 \begin{description}
+  \item[\texttt{169}] Use 16:9 slides with a page width of 16 inches and a height of 9 inches. Margins, typography, and other settings stay the same. Without this option, pages remain 11 by 8.5 inches.
   \item[\texttt{lecture}] Reset page numbering at each section and print foil numbers as \texttt{section--page}, for example `\texttt{2--3}'.
   Without this option, normal page numbering is used. Appendix foils use \texttt{A1}, \texttt{A2}, and so on in both modes.
 \end{description}
@@ -99,6 +100,8 @@ Use the option like this:
 \begin{verbatim}
 \documentclass[lecture]{foils}
 \end{verbatim}
+For widescreen slides, use \verb|\documentclass[169]{foils}|.
+The options can be combined as \verb|\documentclass[169,lecture]{foils}|.
 
 \section{Command reference}
 \begin{description}
@@ -136,7 +139,8 @@ The article-style \texttt{abstract}, \texttt{titlepage}, and \texttt{theindex} e
 Use \cmd{makesection}, \cmd{makefoil}, and \cmd{makeappendix} instead.
 
 \section{Layout and typography}
-\pkg{foils} configures the page as landscape letter paper, with an 11 inch width and an 8.5 inch height.
+By default, \pkg{foils} configures the page as landscape letter paper, with an 11 inch width and an 8.5 inch height.
+The \texttt{169} option changes these dimensions to 16 inches by 9 inches while keeping the same margins and typography.
 It sets the PDF page size to the same dimensions.
 
 The default family is sans serif.
