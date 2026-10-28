@@ -95,7 +95,6 @@ pdflatex talk.tex
   \item[\texttt{169}] Use 16:9 slides with a page width of 16 inches and a height of 9 inches. Margins, typography, and other settings stay the same. Without this option, pages remain 11 by 8.5 inches.
   \item[\texttt{lefttitles}] Make titles created by \cmd{makefoil} flush left. By default, these titles are centered in both page formats.
   \item[\texttt{lecture}] Reset page numbering at each section and print foil numbers as \texttt{section--page}, for example `\texttt{2--3}'.
-  Without this option, normal page numbering is used. Appendix foils use \texttt{A1}, \texttt{A2}, and so on in both modes.
 \end{description}
 Use the option like this:
 \begin{verbatim}
@@ -104,6 +103,28 @@ Use the option like this:
 For widescreen slides, use \verb|\documentclass[169]{foils}|.
 For widescreen slides with flush-left titles, use \verb|\documentclass[169,lefttitles]{foils}|.
 All options can be combined as \verb|\documentclass[169,lefttitles,lecture]{foils}|.
+
+To reference a foil, place its label after \cmd{makefoil}:
+\begin{verbatim}
+\makefoil{An example}\label{foil:example}
+Example content.
+
+\makefoil{Discussion}
+See page~\pageref{foil:example}.
+\end{verbatim}
+Compile twice to resolve references. Both footers and \cmd{pageref} use these numbers:
+\begin{center}
+\begin{tabular}{@{}p{0.34\linewidth}p{0.29\linewidth}p{0.29\linewidth}@{}}
+\raggedright Situation & \raggedright Normal mode & \raggedright \texttt{lecture} mode \tabularnewline
+\hline
+\raggedright Page 1 before any section & \texttt{1} & \texttt{0\textendash1} \tabularnewline
+\raggedright Section 4, page 11 & \texttt{11} & \texttt{4\textendash11} \tabularnewline
+\raggedright Start of section 5 & \raggedright Continues consecutive numbering & \texttt{5\textendash1} \tabularnewline
+\raggedright First appendix foil & \texttt{A1} & \texttt{A1} \tabularnewline
+\raggedright Next appendix foil & \texttt{A2} & \texttt{A2} \tabularnewline
+\raggedright New section within appendix & \raggedright Continues appendix numbering & \raggedright Continues appendix numbering \tabularnewline
+\end{tabular}
+\end{center}
 
 \section{Command reference}
 \begin{description}
@@ -133,6 +154,7 @@ All options can be combined as \verb|\documentclass[169,lefttitles,lecture]{foil
 
   \item[\cmd{makeappendix}] Start the appendix.
     \pkg{foils} inserts an appendix title page, clears the normal section footer, and numbers later appendix foils as \texttt{A1}, \texttt{A2}, and so on.
+    Footer numbers and \cmd{pageref} references use this format in both normal and \texttt{lecture} modes.
 
   \item[\cmd{makereference}\texttt{[fontsize]\{bibfile\}}] Start a bibliography page using the \texttt{alpha} bibliography style.
     The optional \texttt{fontsize} argument defaults to \cmd{small}; pass another declaration such as \cmd{footnotesize} if the reference list is long.

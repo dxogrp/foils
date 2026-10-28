@@ -83,11 +83,21 @@ pdflatex talk.tex
 
 `lecture`
 : Reset page numbering at each section and print foil numbers as
-  `section--page`, for example `2--3`. When `hyperref` is loaded, Foils also
-  disables duplicate hyperref page anchors for lecture-style numbering.
+  `section--page`, for example `2--3`.
 
 All options can be combined, for example
 `\documentclass[169,lefttitles,lecture]{foils}`.
+
+Footers and `\pageref` use matching page numbers:
+
+| Situation | Normal mode | `lecture` mode |
+| --- | --- | --- |
+| Page 1 before any section | `1` | `0–1` |
+| Section 4, page 11 | `11` | `4–11` |
+| Start of section 5 | Continues consecutive numbering | `5–1` |
+| First appendix foil | `A1` | `A1` |
+| Next appendix foil | `A2` | `A2` |
+| New section within appendix | Continues appendix numbering | Continues appendix numbering |
 
 ## Public Commands
 
@@ -121,8 +131,8 @@ All options can be combined, for example
   option. The footer uses the current section title and the current page number.
 
 `\makeappendix`
-: Start the appendix and switch subsequent foil numbering to `A1`, `A2`, and
-  so on.
+: Start the appendix and switch subsequent footer numbers and `\pageref`
+  references to `A1`, `A2`, and so on, in both normal and `lecture` modes.
 
 `\makereference[<size>]{<bib-file>}`
 : Start an unnumbered bibliography page using the `alpha` bibliography style.

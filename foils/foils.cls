@@ -297,18 +297,19 @@
 \newcommand{\insertsection}{}
 \newcommand{\foilssectiontitle}{}
 \newcounter{foilsappendixpage}
+\renewcommand{\thepage}{%
+  \iffoils@appendix
+    A\arabic{foilsappendixpage}%
+  \else\iffoils@lecture
+    \arabic{section}--\arabic{page}%
+  \else
+    \arabic{page}%
+  \fi\fi}
 \newcommand{\foilsfooterlabel}{%
   \iffoils@appendix\else
     \insertsection
   \fi}
-\newcommand{\foilspagenumber}{%
-  \iffoils@appendix
-    A\arabic{foilsappendixpage}%
-  \else\iffoils@lecture
-    \arabic{section}--\thepage
-  \else
-    \thepage
-  \fi\fi}
+\newcommand{\foilspagenumber}{\thepage}
 \newcommand{\foils@stepappendixpage}{%
   \iffoils@appendix\stepcounter{foilsappendixpage}\fi}
 \newcommand{\foils@unsupportedsectioning}[1]{%
@@ -382,11 +383,9 @@
 }
 \pagestyle{foils}
 \AtBeginDocument{%
-  \iffoils@lecture
-    \@ifpackageloaded{hyperref}{%
-      \hypersetup{hypertexnames=false}%
-    }{}%
-  \fi}
+  \@ifpackageloaded{hyperref}{%
+    \hypersetup{hypertexnames=false}%
+  }{}}
 
 \renewcommand{\today}{%
   \ifcase\month\or
