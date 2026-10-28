@@ -94,6 +94,19 @@ All options can be combined, for example
 `\info{<text>}`
 : Set small metadata text printed on section title pages.
 
+`\setfoilcolor{<color>}`
+: Set one shared color for section headings, the Appendix heading, foil titles,
+  and footer labels and page numbers. The default is black. The class loads
+  `xcolor`, so named colors, color mixes, and custom colors are supported.
+  Set the color in the preamble, for example:
+
+  ```latex
+  \definecolor{accent}{HTML}{204A87}
+  \setfoilcolor{accent}
+  ```
+
+  Alternatively, use a mix such as `\setfoilcolor{blue!70!black}`.
+
 `\maketitle`
 : Make the deck title page from `\title`, `\author`, and `\date`.
   The article-style `\thanks` command is not supported.

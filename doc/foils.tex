@@ -110,6 +110,15 @@ All options can be combined as \verb|\documentclass[169,lefttitles,lecture]{foil
   \item[\cmd{info}\texttt{\{text\}}] Store metadata shown in small type on section title pages.
     Typical values include a course name, seminar name, or event label.
 
+  \item[\cmd{setfoilcolor}\texttt{\{color\}}] Set one shared color for section headings, the Appendix heading, foil titles, and footer labels and page numbers.
+    The default is black. Named colors, color mixes, and custom colors from \pkg{xcolor} are supported.
+    Set the color in the preamble, for example:
+\begin{verbatim}
+\definecolor{accent}{HTML}{204A87}
+\setfoilcolor{accent}
+\end{verbatim}
+    Alternatively, use a mix such as \verb|\setfoilcolor{blue!70!black}|.
+
   \item[\cmd{maketitle}] Create the title page using LaTeX's standard \cmd{title}, \cmd{author}, and \cmd{date} values.
     The title page is numbered internally as page \texttt{0}, so it does not print a normal footer.
     The article-style \cmd{thanks} command is not supported on title pages.
@@ -150,7 +159,7 @@ Normal body text is set at a large slide-oriented size, with larger display size
 \cmd{large}, \cmd{Large}, \cmd{LARGE}, \cmd{huge}, and \cmd{Huge} declarations.
 Paragraphs are ragged right with no indentation, and lists use wider label spacing suitable for projected slides.
 
-The class loads \file{fix-cm}, \file{enumitem}, and \file{graphicx}.
+The class loads \file{fix-cm}, \file{enumitem}, \file{graphicx}, and \file{xcolor}.
 You may load additional packages in your document preamble as usual.
 
 \section{Appendix and references}

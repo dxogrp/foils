@@ -15,6 +15,7 @@
 
 \RequirePackage{enumitem}
 \RequirePackage{graphicx}
+\RequirePackage{xcolor}
 
 % Page layout: landscape letter by default, or 16:9 with the 169 option.
 \iffoils@widescreen
@@ -290,6 +291,9 @@
 \newcommand{\insertinfo}{}
 \newcommand{\info}[1]{\renewcommand{\insertinfo}{#1}}
 
+\colorlet{foils@color}{black}
+\newcommand{\setfoilcolor}[1]{\colorlet{foils@color}{#1}}
+
 \newcommand{\insertsection}{}
 \newcommand{\foilssectiontitle}{}
 \newcounter{foilsappendixpage}
@@ -370,7 +374,7 @@
   \renewcommand{\@evenhead}{\@oddhead}%
   \renewcommand{\@oddfoot}{%
     \ifnum\value{page}>0
-      \tiny\foilsfooterlabel\hfil\foilspagenumber
+      {\color{foils@color}\tiny\foilsfooterlabel\hfil\foilspagenumber}%
     \else
       \hfil
     \fi}%
@@ -433,7 +437,7 @@
   \renewcommand{\foilssectiontitle}{#1}%
   \thispagestyle{foils}%
   \begin{flushright}\tiny\insertinfo\end{flushright}%
-  \begin{center}\Large\bfseries\arabic{section}.\ #1\end{center}%
+  \begin{center}\color{foils@color}\Large\bfseries\arabic{section}.\ #1\end{center}%
 }
 
 \newcommand{\makefoil}[1]{%
@@ -443,7 +447,7 @@
   \thispagestyle{foils}%
   {\large\bfseries
     \iffoils@lefttitles\raggedright\else\centering\fi
-    #1\par\null}%
+    \color{foils@color}#1\par\null}%
   \vspace{\foilheadskip}%
 }
 
@@ -456,7 +460,7 @@
   \renewcommand{\foilssectiontitle}{Appendix}%
   \thispagestyle{empty}%
   \null\vfil
-  \begin{center}\Large\bfseries Appendix\end{center}%
+  \begin{center}\color{foils@color}\Large\bfseries Appendix\end{center}%
   \vfil\newpage}
 \RenewDocumentCommand{\appendix}{}{%
   \foils@unsupportedarticlecommand\appendix
