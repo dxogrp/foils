@@ -93,6 +93,7 @@ pdflatex talk.tex
 \pkg{foils} defines the following class options:
 \begin{description}
   \item[\texttt{169}] Use 16:9 slides with a page width of 16 inches and a height of 9 inches. Margins, typography, and other settings stay the same. Without this option, pages remain 11 by 8.5 inches.
+  \item[\texttt{lefttitles}] Make titles created by \cmd{makefoil} flush left. By default, these titles are centered in both page formats.
   \item[\texttt{lecture}] Reset page numbering at each section and print foil numbers as \texttt{section--page}, for example `\texttt{2--3}'.
   Without this option, normal page numbering is used. Appendix foils use \texttt{A1}, \texttt{A2}, and so on in both modes.
 \end{description}
@@ -101,7 +102,8 @@ Use the option like this:
 \documentclass[lecture]{foils}
 \end{verbatim}
 For widescreen slides, use \verb|\documentclass[169]{foils}|.
-The options can be combined as \verb|\documentclass[169,lecture]{foils}|.
+For widescreen slides with flush-left titles, use \verb|\documentclass[169,lefttitles]{foils}|.
+All options can be combined as \verb|\documentclass[169,lefttitles,lecture]{foils}|.
 
 \section{Command reference}
 \begin{description}
@@ -117,7 +119,7 @@ The options can be combined as \verb|\documentclass[169,lecture]{foils}|.
     In \texttt{lecture} mode, the page counter is reset to \texttt{1}.
     The command advances LaTeX's standard \texttt{section} counter, so manual adjustments can use \cmd{setcounter}\texttt{\{section\}\{number\}}.
 
-  \item[\cmd{makefoil}\texttt{\{title\}}] Start a content foil on a new page with a centered title.
+  \item[\cmd{makefoil}\texttt{\{title\}}] Start a content foil on a new page with a centered title, or a flush-left title with the \texttt{lefttitles} option.
     The footer prints the current section title on the left and the page number on the right.
 
   \item[\cmd{makeappendix}] Start the appendix.

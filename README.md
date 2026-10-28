@@ -76,10 +76,18 @@ pdflatex talk.tex
   `\documentclass[169]{foils}`. Margins, typography, and other settings stay
   the same. Without this option, pages remain 11 by 8.5 inches.
 
+`lefttitles`
+: Make titles created by `\makefoil` flush left. By default, these titles are
+  centered in both page formats. For widescreen slides with flush-left titles,
+  use `\documentclass[169,lefttitles]{foils}`.
+
 `lecture`
 : Reset page numbering at each section and print foil numbers as
   `section--page`, for example `2--3`. When `hyperref` is loaded, Foils also
   disables duplicate hyperref page anchors for lecture-style numbering.
+
+All options can be combined, for example
+`\documentclass[169,lefttitles,lecture]{foils}`.
 
 ## Public Commands
 
@@ -96,8 +104,8 @@ pdflatex talk.tex
   counter, so manual adjustments can use `\setcounter{section}{<number>}`.
 
 `\makefoil{<title>}`
-: Start a new foil with a centered title. The footer uses the current section
-  title and the current page number.
+: Start a new foil with a centered title, or a flush-left title with the `lefttitles`
+  option. The footer uses the current section title and the current page number.
 
 `\makeappendix`
 : Start the appendix and switch subsequent foil numbering to `A1`, `A2`, and

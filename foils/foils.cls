@@ -4,8 +4,10 @@
 \newif\iffoils@lecture
 \newif\iffoils@appendix
 \newif\iffoils@widescreen
+\newif\iffoils@lefttitles
 \DeclareOption{lecture}{\foils@lecturetrue}
 \DeclareOption{169}{\foils@widescreentrue}
+\DeclareOption{lefttitles}{\foils@lefttitlestrue}
 \ProcessOptions\relax
 
 \RequirePackage{fix-cm}
@@ -439,7 +441,9 @@
   \foils@stepappendixpage
   \renewcommand{\insertsection}{\foilssectiontitle}%
   \thispagestyle{foils}%
-  {\large\bfseries\centering #1\par\null}%
+  {\large\bfseries
+    \iffoils@lefttitles\raggedright\else\centering\fi
+    #1\par\null}%
   \vspace{\foilheadskip}%
 }
 
